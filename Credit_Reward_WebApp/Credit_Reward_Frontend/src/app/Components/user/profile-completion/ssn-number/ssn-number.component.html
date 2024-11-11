@@ -1,0 +1,42 @@
+<div class="container mt-5 text-center">
+    <h3>Profile Creation</h3>
+    <p>Last 4 of your SSN</p>
+  
+    <!-- SSN Input Field -->
+    <div class="form-group">
+      <input
+        type="text"
+        id="ssn"
+        class="form-control text-center"
+        maxlength="4"
+        placeholder="SSN Last 4 digits"
+      />
+    </div>
+  
+    <!-- Terms and Conditions Checkbox -->
+    <div class="form-check text-start mt-3">
+      <input
+        type="checkbox"
+        id="termsCheckbox"
+        class="form-check-input"
+      />
+      <label for="termsCheckbox" class="form-check-label">
+        By checking this box:
+      </label>
+  
+      <p class="mt-2" style="font-size: 14px; color: #555;">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        <br /><br />
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+        <br /><br />
+        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </p>
+    </div>
+  
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button class="btn btn-primary" (click)="continue()">Continue</button>
+    </div>
+  </div>
+  

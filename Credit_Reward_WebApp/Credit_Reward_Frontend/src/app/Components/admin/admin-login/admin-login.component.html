@@ -1,0 +1,33 @@
+<div id="admin-login" class="container">
+  <h1 class="text-center mb-3">Admin Login</h1>
+  <div class="form d-flex justify-content-center">
+    <form (submit)="onSubmit($event)">
+      <div class="login-form">
+        <div class="input-group mb-3">
+          <span class="input-group-text"
+            ><i class="bi bi-envelope-fill"></i
+          ></span>
+          <input
+            type="email"
+            class="form-control"
+            id="adminInput"
+            autocomplete="username"
+            placeholder="name@example.com"
+            required
+          />
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

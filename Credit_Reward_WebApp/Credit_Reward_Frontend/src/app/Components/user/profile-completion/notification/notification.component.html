@@ -1,0 +1,15 @@
+<div
+  id="notification"
+  class="container text-center mt-5 justify-content-center gap-3"
+>
+  <h3>Enable Push Notification</h3>
+  <p>So you don't miss any important updates</p>
+
+  <div class="d-flex gap-5 justify-content-center">
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" (change)="selectOption('disable')"/>
+    <label class="btn btn-outline-primary" for="btnradio1">Don't Enable</label>
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked (change)="selectOption('enable')" />
+    <label class="btn btn-outline-primary" for="btnradio2">Enable</label>
+  </div>
+  <button class="btn btn-primary mt-3 btn-lg w-50" (click)="processSelection()">Continue</button>
+</div>

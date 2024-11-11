@@ -1,0 +1,41 @@
+<div id="user-login" class="container">
+  <h1 class="text-center mb-3">Login</h1>
+  <form (submit)="onSubmit($event)">
+    <div class="login-form">
+      <div class="input-group mb-3">
+        <span class="input-group-text"
+          ><i class="bi bi-envelope-fill"></i
+        ></span>
+        <input
+          type="email"
+          class="form-control"
+          id="Email"
+          [(ngModel)]="Email"
+          name="Email"
+          autocomplete="username"
+          placeholder="Email"
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          [(ngModel)]="Password"
+          name="Password"
+          autocomplete="current-password"
+          placeholder="Password"
+          required
+        />
+      </div>
+      <p class="">
+        <button type="submit" class="btn btn-primary">Login</button> Forgot
+        Password? <a href="/reset-password">Reset Password</a>
+      </p>
+
+      <p>Don't have an account? <a href="/register">Sign UP</a></p>
+    </div>
+  </form>
+</div>

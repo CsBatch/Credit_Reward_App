@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Enter Your Annual Income</h2>
+  <form>
+    <div class="form-group">
+      <label for="income">Annual Income</label>
+      <input 
+        type="number" 
+        id="income" 
+        name="income" 
+        class="form-control" 
+        required>
+    </div>
+
+    <button 
+      type="button" 
+      class="btn btn-secondary" 
+      (click)="onBack()">
+      Back
+    </button>
+    <button 
+      type="button" 
+      class="btn btn-primary" 
+      (click)="onContinue()" 
+      >
+      Continue
+    </button>
+  </form>
+</div>
