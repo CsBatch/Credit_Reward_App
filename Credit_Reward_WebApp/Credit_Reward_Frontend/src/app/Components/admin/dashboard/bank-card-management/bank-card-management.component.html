@@ -10,7 +10,7 @@
 				aria-describedby="search-addon" />
 
 			<div class="d-flex justify-content-between align-items-center p-3">
-				<button class="btn btn-success">Export to Excel</button>
+				<button class="btn btn-success" (click)="openAddBankModal()">Add Bank</button>
 			</div>
 		</div>
 
@@ -19,21 +19,21 @@
 				<tr>
 					<th>No.</th>
 					<th>Bank Name</th>
-					<th>Edit</th>
 					<th>Enable/Disable</th>
+					<th>Edit</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let bank of banks; let i = index">
 					<td>{{ i + 1 }}</td>
 					<td>{{ bank.BankName }}</td>
-					<td></td>
 					<td>
 						<label class="switch">
 							<input type="checkbox" [checked]="bank.ActiveStatus" (change)="toggleStatus(bank)" />
 							<span class="slider"></span>
 						</label>
 					</td>
+					<td><i class="bi bi-pencil-square"></i></td>
 				</tr>
 			</tbody>
 		</table>

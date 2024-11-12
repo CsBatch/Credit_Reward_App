@@ -62,10 +62,8 @@ export const getAllUser = async (req: Request, res: Response): Promise<any> => {
             const email = element.Email
             const phone = element.PhoneNumber
             const status = element.AccountStatus
-            console.log("inside get all user",status)
             return { id, name, email, phone, status }
         })
-        console.log("sending user data", userData)
         return res.status(200).json(userData);
 
     } catch (error) {
@@ -76,7 +74,6 @@ export const getAllUser = async (req: Request, res: Response): Promise<any> => {
 export const changeUserStatus = async (req: Request, res: Response): Promise<any> => {
     const userId = req.params.id;
     const newStatus = req.body.status;
-    console.log(userId, newStatus)
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return res.status(200).json({ error: 'Invalid User ID format' });
     }
@@ -98,7 +95,6 @@ export const changeUserStatus = async (req: Request, res: Response): Promise<any
 // <----------------------------------- Bank Management ------------------------->
 export const addBank = async (req: Request, res: Response): Promise<any> => {
     const BankName = req.body.bankName;
-    console.log(BankName)
     try {
         const bank = await Bank.findOne({ BankName });
         if (bank) {
@@ -127,7 +123,6 @@ export const showBank = async (req: Request, res: Response): Promise<any> => {
 
 export const removeBank = async (req: Request, res: Response): Promise<any> => {
     const BankName = req.body.bankName;
-    console.log(BankName)
     try {
         const bank = await Bank.findOneAndDelete({ BankName });
         return res.status(200).json({ success: true, bank });
@@ -141,12 +136,10 @@ export const removeBank = async (req: Request, res: Response): Promise<any> => {
 export const changeBankStatus = async (req: Request, res: Response): Promise<any> => {
     const bankId = req.params.id;
     const newStatus = req.body.status;
-    console.log(bankId, newStatus)
     if (!mongoose.Types.ObjectId.isValid(bankId)) {
         return res.status(200).json({ error: 'Invalid User ID format' });
     }
     try {
-        console.log("inside change bank status")
         const updatedBank = await Bank.findByIdAndUpdate(
             bankId,
             { ActiveStatus: newStatus },
@@ -168,7 +161,6 @@ export const addCard = async (req: Request, res: Response): Promise<any> => {
 
     try {
         const bank = await Bank.findOne({ BankName });
-        console.log(bank)
         if (!bank) {
             return res.status(404).json({ error: 'Bank not found' });
         }
@@ -205,7 +197,6 @@ export const removeCard = async (req: Request, res: Response): Promise<any> => {
         const cardDelete = await Bank.findOneAndDelete({ _id: CardId });
         bank.save();
         return res.status(200).json({ success: true, cardDelete });
-        
     } catch (error) {
         return res.status(500).json({ error });
     }

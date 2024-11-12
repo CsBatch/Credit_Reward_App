@@ -26,6 +26,6 @@
     font-size: 1.1rem;
 }
 
-.nav-link.active {
+.nav-link:active {
     font-weight: bold;
 }
