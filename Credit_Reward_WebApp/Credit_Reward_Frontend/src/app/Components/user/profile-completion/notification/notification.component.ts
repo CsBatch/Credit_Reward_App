@@ -22,7 +22,7 @@ export class NotificationComponent {
   processSelection(): void {
     // Perform any necessary processing with the selected option
     console.log(`Selected option: ${this.selectedOption}`);
-    this.router.navigate(['/security-questions']);
+    this.router.navigate(['/profile-completion/security-questions']);
     // You can add further processing here or pass this data to a service or another component as needed
   }
 }

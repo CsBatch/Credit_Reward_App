@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-address',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './address.component.html',
   styleUrl: './address.component.css'
 })
@@ -25,6 +26,7 @@ export class AddressComponent {
       zipCode: this.zipCode
     };
     console.log('Address:', address);
-    this.router.navigate(['/birthdate']);
+    localStorage.setItem('address', JSON.stringify(address));
+    this.router.navigate(['/profile-completion/birthdate']);
   }
 }

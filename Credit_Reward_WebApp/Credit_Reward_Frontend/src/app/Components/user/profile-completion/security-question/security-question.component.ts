@@ -34,6 +34,6 @@ export class SecurityQuestionComponent {
       console.log('Answer 1:', this.answer1);
       console.log('Security Question 2:', this.securityQuestion2);
       console.log('Answer 2:', this.answer2);
-      this.router.navigate(['/address']);
+      this.router.navigate(['/profile-completion/address']);
     }
 }

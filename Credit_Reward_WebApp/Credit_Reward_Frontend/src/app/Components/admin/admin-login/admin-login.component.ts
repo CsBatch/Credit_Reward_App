@@ -1,70 +1,37 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError, EMPTY } from 'rxjs';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 @Component({
-  selector: 'app-admin-login',
-  standalone: true,
-  imports: [],
-  templateUrl: './admin-login.component.html',
-  styleUrl: './admin-login.component.css'
+	selector: 'app-admin-login',
+	standalone: true,
+	imports: [FormsModule],
+	templateUrl: './admin-login.component.html',
+	styleUrl: './admin-login.component.css'
 })
+
 export class AdminLoginComponent {
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient, private router: Router) { }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-
-    // Capture form data here, for example:
-    const email = (document.getElementById('userInput') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-
-    // Make a POST request to the login endpoint
-    this.http.post('/auth/admin/login', { email, password }).subscribe(
-      response => {
-        console.log('Login successful', response);
-      },
-      error => {
-        console.error('Login failed', error);
-      }
-    );
-  }
-
+	Email: String = ''
+	Password: String = ''
+	onSubmit(event: Event) {
+		event.preventDefault();
+		const Email = this.Email;
+		const Password = this.Password;
+		this.http.post<any>('http://localhost:8000/admin/login', { Email, Password }).pipe(
+			catchError(error => {
+				alert('Login failed: ' + error.error.message || 'An error occurred during login');
+				return EMPTY;
+			})).subscribe(response => {
+				console.log('Login successful', response);
+				this.router.navigate(['/admindashboard']);
+				const user = response['user'];
+				const token = response['token']
+				localStorage.setItem('token', token);
+				this.router.navigate(['/admindashboard']);
+			}
+			);
+	}
 }
-
-
-/**
- * 
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-@Component({
-  selector: 'app-login-page',
-  standalone: true,
-  templateUrl: './user-login.component.html',
-  styleUrl: './user-login.component.css',
-})
-export class UserLoginComponent {
-  constructor(private http: HttpClient) {}
-
-  onSubmit(event: Event) {
-    event.preventDefault();
-
-    // Capture form data here, for example:
-    const email = (document.getElementById('userInput') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-    const loginType = (document.querySelector('input[name="loginType"]:checked') as HTMLInputElement).value;
-
-    // Make a POST request to the login endpoint
-    this.http.post('/auth/user/login', { email, password, loginType }).subscribe(
-      response => {
-        console.log('Login successful', response);
-      },
-      error => {
-        console.error('Login failed', error);
-      }
-    );
-  }
-}
-
-
-
- */

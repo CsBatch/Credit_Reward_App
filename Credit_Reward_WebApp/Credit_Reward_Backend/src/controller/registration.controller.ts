@@ -22,6 +22,22 @@ export const register = async (req: Request, res: Response): Promise<any> => {
         return res.status(500).json({ error: 'Failed to register user', details: error.message });
     }
 };
+
+//------------------------Complete Profile Endpoint---------------------------------
+export const completeProfile = async (req: Request, res: Response): Promise<any> => {
+    const { Email, address, securityQuestion1, securityQuestion2, answer1, answer2, dateOfBirth, income, ssn } = req.body;
+    const userId = await User.findOne({ Email });
+    console.log(userId)
+    try {
+        const user = await User.findByIdAndUpdate(userId, { Profile: true, Address: address, SecurQue1: securityQuestion1, SecurQue2: securityQuestion2, SecurAns1: answer1, SecurAns2: answer2, DateOfBirth: dateOfBirth, AnnualIncome: income, SSN: ssn }, { new: true });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        return res.status(200).json({ message: 'Profile Updated Successfully' });
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 // -----------------------Login Endpoint---------------------------------
 export const login = async (req: Request, res: Response): Promise<any> => {
     const { Email, Password } = req.body;

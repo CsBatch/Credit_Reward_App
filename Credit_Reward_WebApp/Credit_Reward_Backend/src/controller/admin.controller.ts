@@ -50,7 +50,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
 };
 
 
-export const getAllUser = async (res: Response): Promise<any> => {
+export const getAllUser = async (req: Request, res: Response): Promise<any> => {
     try {
         const user = await User.find();
         if (!user) {
@@ -62,18 +62,21 @@ export const getAllUser = async (res: Response): Promise<any> => {
             const email = element.Email
             const phone = element.PhoneNumber
             const status = element.AccountStatus
-
+            console.log("inside get all user",status)
             return { id, name, email, phone, status }
         })
+        console.log("sending user data", userData)
         return res.status(200).json(userData);
+
     } catch (error) {
-        return res.status(501).json({ error: 'Inernal Server Error' });
+        return res.status(501).json(error);
     }
 };
 
 export const changeUserStatus = async (req: Request, res: Response): Promise<any> => {
     const userId = req.params.id;
     const newStatus = req.body.status;
+    console.log(userId, newStatus)
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return res.status(200).json({ error: 'Invalid User ID format' });
     }
@@ -109,7 +112,7 @@ export const addBank = async (req: Request, res: Response): Promise<any> => {
 }
 
 
-export const showBank = async (res: Response): Promise<any> => {
+export const showBank = async (req: Request, res: Response): Promise<any> => {
     try {
         const bank = await Bank.find();
         if (!bank) {
@@ -138,17 +141,19 @@ export const removeBank = async (req: Request, res: Response): Promise<any> => {
 export const changeBankStatus = async (req: Request, res: Response): Promise<any> => {
     const bankId = req.params.id;
     const newStatus = req.body.status;
+    console.log(bankId, newStatus)
     if (!mongoose.Types.ObjectId.isValid(bankId)) {
         return res.status(200).json({ error: 'Invalid User ID format' });
     }
     try {
+        console.log("inside change bank status")
         const updatedBank = await Bank.findByIdAndUpdate(
             bankId,
-            { AccountStatus: newStatus },
+            { ActiveStatus: newStatus },
             { new: true }
         );
         if (!updatedBank) {
-            return res.status(404).json({ error: 'User not found' });
+            return res.status(404).json({ error: 'Bank not found' });
         }
         return res.status(200).json({ success: true, bank: updatedBank });
     } catch (error) {
@@ -233,20 +238,3 @@ export const changeBankCardStatus = async (req: Request, res: Response): Promise
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-/*
-    FirstName: string;
-    LastName: string;
-    PhoneNumber: string;
-    Email: string;
-    Password: string;
-    Address: string;
-    DateOfBirth: Date;
-    SSN: number;
-    AnnualIncome: number;
-    AccountStatus: boolean;
-    SecurQue1: string;
-    SecurAns1: string;
-    SecurQue2: string;
-    SecurAns2: string; 
- */

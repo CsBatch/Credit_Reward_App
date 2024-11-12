@@ -1,0 +1,18 @@
+<div class="dashboard d-flex">
+	<!-- Sidebar -->
+	<div class="col-md-2 sidebar">
+		<h3 class="p-3">Automated Rewards</h3>
+		<ul class="nav flex-column" type="disc">
+			<li class="nav-item">
+				<a class="nav-link active" href="/admindashboard/usermanagement">User Management</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/admindashboard/bankcardmanagement">Bank/Card Management</a>
+			</li>
+		</ul>
+		<button class="btn btn-dark mt-4">Log Out</button>
+	</div>
+	<div class="col-md-10">
+		<router-outlet></router-outlet>
+	</div>
+</div>

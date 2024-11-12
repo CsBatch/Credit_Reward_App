@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { catchError, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,5 +11,8 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+
+  constructor(private http: HttpClient, private router: Router) { }
+  localStorage: Storage = window.localStorage;
 
 }

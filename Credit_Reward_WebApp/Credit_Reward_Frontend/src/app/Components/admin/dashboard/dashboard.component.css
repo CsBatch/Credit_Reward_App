@@ -1,0 +1,31 @@
+.dashboard {
+    width: 100vw;
+    height: 100vh;
+}
+.sidebar {
+    background-color: #c2c2c2;
+    border: 2px solid #555;
+    height: 100vh;
+    padding: 0px;
+    justify-content: center;
+    align-items: top;
+}
+
+.sidebar h3 {
+    color: #000000;
+    font-size: 1.25rem;
+    border-bottom: 2px solid black;
+}
+
+.nav-item {
+    border-bottom: 2px solid black;
+}
+
+.nav-link {
+    color: #000000;
+    font-size: 1.1rem;
+}
+
+.nav-link.active {
+    font-weight: bold;
+}

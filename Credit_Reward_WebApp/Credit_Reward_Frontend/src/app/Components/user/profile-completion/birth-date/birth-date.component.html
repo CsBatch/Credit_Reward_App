@@ -4,7 +4,7 @@
   
     <div class="form-group mt-3">
       <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" class="form-control">
+      <input type="date" id="dob" [(ngModel)]="dateOfBirth" class="form-control">
     </div>
   
     <button class="btn btn-primary mt-4" (click)="submitDateOfBirth()">Continue</button>
